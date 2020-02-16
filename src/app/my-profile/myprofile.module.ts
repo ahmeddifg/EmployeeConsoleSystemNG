@@ -8,6 +8,7 @@ import {MatchHeightModule} from '../shared/directives/match-height.directive';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {MyprofileRoutingModule} from './myprofile-routing.module';
 import {MyProfileComponent} from './my-profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MyProfileComponent} from './my-profile.component';
         MyprofileRoutingModule,
         ChartistModule,
         NgbModule,
-        MatchHeightModule
+        MatchHeightModule,
+        ReactiveFormsModule
     ],
     exports: [],
     declarations: [

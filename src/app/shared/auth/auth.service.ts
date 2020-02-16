@@ -3,28 +3,27 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
-  token: string;
+    token: string;
 
-  constructor() {}
+    constructor() {
+    }
 
-  signupUser(email: string, password: string) {
-    //your code for signing up the new user
-  }
+    signupUser(email: string, password: string) {
+    }
 
-  signinUser(email: string, password: string) {
-    //your code for checking credentials and getting tokens for for signing in user
-  }
+    signinUser(email: string, password: string) {
+    }
 
-  logout() {   
-    this.token = null;
-  }
+    logout() {
+        this.token = null;
+    }
 
-  getToken() {    
-    return this.token;
-  }
+    getToken() {
+        return this.token;
+    }
 
-  isAuthenticated() {
-    // here you can check if user is authenticated or not through his token 
-    return true;
-  }
+    isAuthenticated() {
+        // here you can check if user is authenticated or not through his token
+        return true;
+    }
 }

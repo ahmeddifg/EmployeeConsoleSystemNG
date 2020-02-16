@@ -1,3 +1,108 @@
-<p>
-  edit-profile works!
-</p>
+<div class="row text-left">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="px-3">
+                    <form class="form" [formGroup]="profileForm" (ngSubmit)="onSaveProfile()">
+                        <div class="form-body">
+                            <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">First Name</label>
+                                        <input type="text" id="projectinput1" class="form-control" name="firstName"
+                                               formControlName="firstName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Last Name</label>
+                                        <input type="text" id="projectinput2" class="form-control" name="lastName"
+                                               formControlName="lastName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">E-mail</label>
+                                        <input type="email" id="projectinput3" class="form-control" name="email"
+                                               formControlName="email">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Phone">Phone number</label>
+                                        <input type="text" id="Phone" class="form-control" name="phoneNumber"
+                                               formControlName="phoneNumber">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joined">Joined Date:</label>
+                                        <input type="date" id="joined" class="form-control" name="joined"
+                                               formControlName="joined" placeholder="date" date>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projut53">Gender</label>
+                                        <select id="projut53" name="gender" class="form-control"
+                                                formControlName="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="form-section"><i class="ft-file-text"></i> Technical Info</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="jobTitle">Job Title</label>
+                                        <input type="text" id="jobTitle" class="form-control" name="jobTitle" formControlName="jobTitle">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="yearsEx">Years of experience </label>
+                                        <input type="number" id="yearsEx" class="form-control" name="yearsEx"
+                                               formControlName="yearsEx">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="skills">skills</label>
+                                        <input type="text" id="skills" class="form-control" name="skills"
+                                               formControlName="skills">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="aboutyou">About You</label>
+                                <textarea id="aboutyou" rows="5" class="form-control" name="comment"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+                                <i class="ft-x"></i> Cancel
+                            </button>
+                            <button type="button" class="btn btn-raised " [disabled]="!profileForm.valid"
+                                    [ngClass]="{'btn-success':profileForm.valid, 'btn-secondary':!profileForm.valid}"  >
+                                <i class="fa fa-check-square-o"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
