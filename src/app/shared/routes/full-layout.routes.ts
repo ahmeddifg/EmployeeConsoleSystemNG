@@ -1,6 +1,5 @@
 import {Routes, RouterModule} from '@angular/router';
 
-//Route for content layout with sidebar, navbar and footer.
 
 export const Full_ROUTES: Routes = [
     {
@@ -10,5 +9,9 @@ export const Full_ROUTES: Routes = [
     {
         path: 'profile',
         loadChildren: () => import('../../my-profile/myprofile.module').then(m => m.MyProfileModule)
-    }
+    },
+    {
+        path: 'tasks',
+        loadChildren: () => import('../../my-tasks/mytask.module').then(m => m.MyTaskModule)
+    },
 ];

@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute } from "@angular/router";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../../shared/auth/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-login-page',
@@ -8,23 +10,38 @@ import { Router, ActivatedRoute } from "@angular/router";
     styleUrls: ['./login-page.component.scss']
 })
 
-export class LoginPageComponent {
-
-    @ViewChild('f', {static: false}) loginForm: NgForm;
+export class LoginPageComponent implements OnInit, OnDestroy {
+    loginForm: FormGroup;
+    userName: String;
+    password: String;
+    subscription: Subscription;
 
     constructor(private router: Router,
-        private route: ActivatedRoute) { }
+                private route: ActivatedRoute, private authService: AuthService) {
+    }
+
+    ngOnInit(): void {
+        this.loginForm = new FormGroup({
+            'userName': new FormControl(this.userName, [Validators.required]),
+            'password': new FormControl(this.password, [Validators.required])
+        });
+    }
 
     // On submit button click
     onSubmit() {
-        this.loginForm.reset();
+        // this.subscription = this.authService.loginSubjcet.subscribe(data => {
+        //     if (data) {
+        //         this.router.navigate(['/']);
+        //     }
+        // });
+        this.authService.signinUser(this.loginForm.value['userName'], this.loginForm.value['password']);
     }
-    // On Forgot password link click
-    onForgotPassword() {
-        this.router.navigate(['forgotpassword'], { relativeTo: this.route.parent });
-    }
+
     // On registration link click
     onRegister() {
-        this.router.navigate(['register'], { relativeTo: this.route.parent });
+        this.router.navigate(['register'], {relativeTo: this.route.parent});
+    }
+
+    ngOnDestroy(): void {
     }
 }
