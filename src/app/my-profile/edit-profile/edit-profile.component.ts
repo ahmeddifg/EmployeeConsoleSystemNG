@@ -10,7 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class EditProfileComponent implements OnInit {
 
     @Input() userInfo: UserInfoModel;
-    @Output() doneOutput = new EventEmitter<string>();
+    @Output() doneOutput = new EventEmitter<UserInfoModel>();
     profileForm: FormGroup;
 
     constructor() {
@@ -26,12 +26,13 @@ export class EditProfileComponent implements OnInit {
             'joined': new FormControl(this.userInfo.Joined, [Validators.required]),
             'yearsEx': new FormControl(this.userInfo.yearsEx, [Validators.required]),
             'jobTitle': new FormControl(this.userInfo.jobTitle, [Validators.required]),
-            'skills': new FormControl(this.userInfo.skills, [Validators.required])
+            'skills': new FormControl(this.userInfo.skills, [Validators.required]),
+            'aboutMe': new FormControl(this.userInfo.aboutMe, [Validators.required])
         }, {updateOn: 'blur'});
     }
 
     onSaveProfile() {
-
+        this.doneOutput.emit(this.profileForm.value);
     }
 
 }

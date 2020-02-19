@@ -136,7 +136,7 @@
 
 <!-- this section for updating the user information-->
 <section id="editInfo" *ngIf="currentPage=='editInfo'">
-    <app-edit-profile [userInfo]="userProfile"></app-edit-profile>
+    <app-edit-profile [userInfo]="userProfile" (doneOutput)="onSaveEditProfile($event)"></app-edit-profile>
 </section>
 <!--Update user's friend section starts-->
 

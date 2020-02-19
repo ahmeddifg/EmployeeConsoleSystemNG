@@ -87,7 +87,7 @@
 
                             <div class="form-group">
                                 <label for="aboutyou">About You</label>
-                                <textarea id="aboutyou" rows="5" class="form-control" name="comment"></textarea>
+                                <textarea id="aboutyou" rows="5" class="form-control" name="aboutMe" formControlName="aboutMe"></textarea>
                             </div>
                         </div>
 
@@ -95,7 +95,7 @@
                             <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                                 <i class="ft-x"></i> Cancel
                             </button>
-                            <button type="button" class="btn btn-raised " [disabled]="!profileForm.valid"
+                            <button type="button" class="btn btn-raised " [disabled]="!profileForm.valid" (click)="onSaveProfile()"
                                     [ngClass]="{'btn-success':profileForm.valid, 'btn-secondary':!profileForm.valid}"  >
                                 <i class="fa fa-check-square-o"></i> Save
                             </button>

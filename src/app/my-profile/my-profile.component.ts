@@ -20,4 +20,9 @@ export class MyProfileComponent implements OnInit {
         console.log(page);
         this.currentPage = page;
     }
+
+    onSaveEditProfile(output: UserInfoModel) {
+        this.userProfile = output;
+        this.currentPage = 'About';
+    }
 }

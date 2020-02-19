@@ -8,10 +8,6 @@ export const Full_ROUTES: Routes = [
         loadChildren: () => import('../../home-page/home.module').then(m => m.HomeModule)
     },
     {
-        path: 'dashboard',
-        loadChildren: () => import('../../dashboard/dashboard.module').then(m => m.DashboardModule)
-    },
-    {
         path: 'profile',
         loadChildren: () => import('../../my-profile/myprofile.module').then(m => m.MyProfileModule)
     }
