@@ -19,6 +19,15 @@ export const ROUTES: RouteInfo[] = [
         badgeClass: '',
         isExternalLink: false,
         submenu: []
+    }, {
+        path: '/project/view',
+        title: 'My Projects',
+        icon: 'ft-target',
+        class: '',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: []
     },
     {
         path: '/tasks/view',

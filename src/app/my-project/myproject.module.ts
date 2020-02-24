@@ -5,15 +5,16 @@ import {ChartistModule} from 'ng-chartist';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatchHeightModule} from '../shared/directives/match-height.directive';
 
-import {MytaskRoutingModule} from './mytask-routing.module';
+import {MyProjectRoutingModule} from './myproject-routing.module';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MyProfileComponent} from '../my-profile/my-profile.component';
+import {MyProjectComponent} from './my-project.component';
+import {ProjectFormComponent} from './project-form/project-form.component';
 
 
 @NgModule({
     imports: [
         CommonModule,
-        MytaskRoutingModule,
+        MyProjectRoutingModule ,
         ChartistModule,
         NgbModule,
         MatchHeightModule,
@@ -21,9 +22,9 @@ import {MyProfileComponent} from '../my-profile/my-profile.component';
     ],
     exports: [],
     declarations: [
-       MyProfileComponent
+        MyProjectComponent, ProjectFormComponent
     ],
     providers: [],
 })
-export class MyprojectModule {
+export class MyProjectModule {
 }

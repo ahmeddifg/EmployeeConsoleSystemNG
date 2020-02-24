@@ -29,19 +29,22 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     // On submit button click
     onSubmit() {
-        // this.subscription = this.authService.loginSubjcet.subscribe(data => {
-        //     if (data) {
-        //         this.router.navigate(['/']);
-        //     }
-        // });
+        this.subscription = this.authService.loginSubjcet.subscribe(data => {
+            if (data) {
+                this.router.navigate(['/'], {relativeTo: null});
+            }
+        });
         this.authService.signinUser(this.loginForm.value['userName'], this.loginForm.value['password']);
     }
 
     // On registration link click
     onRegister() {
-        this.router.navigate(['register'], {relativeTo: this.route.parent});
+        this.router.navigate(['pages/register'], {relativeTo: null});
     }
 
     ngOnDestroy(): void {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }
