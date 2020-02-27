@@ -85,7 +85,7 @@
                                                 </button>
                                             </div>
                                             <div class="recover-pass">
-                                                <button class="btn" type="submit"
+                                                <button class="btn" type="submit" [disabled]="!loginForm.valid"
                                                         [ngClass]="{'btn-primary':loginForm.valid, 'btn-secondary':!loginForm.valid}">
                                                     Login
                                                 </button>

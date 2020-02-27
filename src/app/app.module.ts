@@ -24,6 +24,8 @@ import {DragulaService} from 'ng2-dragula';
 import {AuthService} from './shared/auth/auth.service';
 import {AuthGuard} from './shared/auth/auth-guard.service';
 import {HttpAuthInterceptor} from './shared/auth/HttpAuthInterceptor';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import {ProjectService} from './shared/services/project.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -54,12 +56,13 @@ export function createTranslateLoader(http: HttpClient) {
         // AgmCoreModule.forRoot({
         //     apiKey: 'YOUR KEY'
         // }),
-        PerfectScrollbarModule
+        PerfectScrollbarModule,
+        NgxSpinnerModule
     ],
     providers: [
         AuthService,
         AuthGuard,
-        DragulaService,
+        DragulaService, ProjectService,
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

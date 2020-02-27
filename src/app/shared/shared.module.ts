@@ -33,15 +33,14 @@ import {TooltipModule} from '@swimlane/ngx-charts';
         ToggleFullscreenDirective,
         SidebarDirective,
         NgbModule,
-        TranslateModule
-    ],
+        TranslateModule],
     imports: [
         RouterModule,
         CommonModule,
         NgbModule,
         TranslateModule,
         PerfectScrollbarModule,
-        TooltipModule
+        TooltipModule,
     ],
     declarations: [
         FooterComponent,

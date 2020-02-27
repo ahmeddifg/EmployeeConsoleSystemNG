@@ -20,8 +20,8 @@ const appRoutes: Routes = [
         component: FullLayoutComponent,
         data: {title: 'inside menu pages require Auth'},
         children: Full_ROUTES
-        // ,
-        // canActivate: [AuthGuard]
+        ,
+        canActivate: [AuthGuard]
     },
     {path: '', component: ContentLayoutComponent, data: {title: 'full display public pages'}, children: CONTENT_ROUTES},
     {

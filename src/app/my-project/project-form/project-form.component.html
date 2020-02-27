@@ -1,3 +1,94 @@
-<p>
-  project-form works!
-</p>
+<div class="row text-left">
+    <div class="col-sm-12">
+        <div class="card">
+            <ngb-tabset style="padding-top: 0">
+                <ngb-tab>
+                    <ng-template ngbTabTitle>
+                        <div (click)="activeTab=1" class="alert myItemClass"
+                             [ngClass]="{'alert-primary':(activeTab === 1),'alert-secondary':(activeTab !== 1)}">
+                            Project
+                            Basic Information
+                        </div>
+                    </ng-template>
+
+                    <ng-template ngbTabContent>
+                        <div class="card-content">
+                            <div class="px-3">
+                                <form [formGroup]="projectForm" class="form">
+                                    <div class="form-body">
+                                        <h4 class="form-section"><i class="ft-user"></i> Project Info</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Project Name</label>
+                                                    <input type="text" id="projectinput1" class="form-control"
+                                                           name="projectName"
+                                                           formControlName="projectName">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="Description">Project Description </label>
+                                                    <textarea id="Description" rows="5" class="form-control"
+                                                              name="projectShortDesc"
+                                                              formControlName="projectShortDesc"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="projectType">Project Type </label>
+                                                    <select id="projectType" rows="5" class="form-control"
+                                                            name="projectMainType"
+                                                            formControlName="projectMainType">
+                                                        <option *ngFor="let type  of projectTypes"
+                                                                [value]="type.typeId">{{type.projectTypeDesc}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-raised btn-raised btn-warning mr-1"
+                                                (click)="onCancel()">
+                                            <i class="ft-x"></i> Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-raised "
+                                                [disabled]="!projectForm.valid"
+                                                (click)="onSaveProject()"
+                                                [ngClass]="{'btn-success':projectForm.valid, 'btn-secondary':!projectForm.valid}">
+                                            <i class="fa fa-check-square-o"></i> Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                </ngb-tab>
+                <ngb-tab [disabled]="currentProject === null">
+                    <ng-template ngbTabTitle>
+                        <div (click)="activeTab=2" class="alert"
+                             [ngClass]="{'alert-light': currentProject===null ,'alert-primary':(activeTab === 2),'alert-secondary':(activeTab !== 2)}">
+                            Project
+                            Requirements
+                        </div>
+                    </ng-template>
+                    <ng-template ngbTabContent>Project Requirements</ng-template>
+                </ngb-tab>
+                <ngb-tab [disabled]="currentProject === null">
+                    <ng-template ngbTabTitle>
+                        <div (click)="activeTab=3" class="alert"
+                             [ngClass]="{'alert-light': currentProject===null,'alert-primary':(activeTab === 3),'alert-secondary':(activeTab !== 3)}">
+                            Project Files
+                        </div>
+                    </ng-template>
+                    <ng-template ngbTabContent>Project Files</ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>

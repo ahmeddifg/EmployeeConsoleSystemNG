@@ -4,5 +4,6 @@ export interface ProjectModel {
     projectId: number;
     projectName: string;
     projectShortDesc: string;
-    projectType: ProjectTypeModel;
+    projectMainType: number;
+    projectType?: ProjectTypeModel;
 }
