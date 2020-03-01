@@ -6,23 +6,27 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatchHeightModule} from '../shared/directives/match-height.directive';
 
 import {MyProjectRoutingModule} from './myproject-routing.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MyProjectComponent} from './my-project.component';
 import {ProjectFormComponent} from './project-form/project-form.component';
+import {ProjectRequirementsComponent} from './project-requirements/project-requirements.component';
+import {NouisliderModule} from 'ng2-nouislider';
 
 
 @NgModule({
     imports: [
         CommonModule,
-        MyProjectRoutingModule ,
+        MyProjectRoutingModule,
         ChartistModule,
         NgbModule,
         MatchHeightModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NouisliderModule,
+        FormsModule
     ],
     exports: [],
     declarations: [
-        MyProjectComponent, ProjectFormComponent
+        MyProjectComponent, ProjectFormComponent, ProjectRequirementsComponent
     ],
     providers: [],
 })

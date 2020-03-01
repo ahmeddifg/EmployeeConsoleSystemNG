@@ -77,7 +77,9 @@
                             Requirements
                         </div>
                     </ng-template>
-                    <ng-template ngbTabContent>Project Requirements</ng-template>
+                    <ng-template ngbTabContent>
+                        <app-project-requirements [currentProject]="currentProject"></app-project-requirements>
+                    </ng-template>
                 </ngb-tab>
                 <ngb-tab [disabled]="currentProject === null">
                     <ng-template ngbTabTitle>

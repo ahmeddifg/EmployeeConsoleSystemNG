@@ -26,7 +26,7 @@ export class AuthService {
             this.loginSubjcet.next(this.userAccount);
         }, error => {
             this.signupSubjcet.next(null);
-            this.toastr.error(error.error.message);
+            this.toastr.error(error.message);
         });
     }
 
@@ -37,7 +37,7 @@ export class AuthService {
             this.loginSubjcet.next(this.userAccount);
         }, error => {
             this.loginSubjcet.next(null);
-            this.toastr.error(error.error.message);
+            this.toastr.error(error.message);
         });
     }
 

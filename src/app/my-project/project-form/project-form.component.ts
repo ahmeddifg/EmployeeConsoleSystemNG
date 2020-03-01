@@ -55,19 +55,20 @@ export class ProjectFormComponent implements OnInit, OnDestroy {
             'projectName': new FormControl(null, [Validators.required]),
             'projectShortDesc': new FormControl(null, [Validators.required]),
             'projectMainType': new FormControl(null, [Validators.required]),
-            'projectType': new FormControl(null)
+            'projectType': new FormControl(null),
+            'projectRequirements': new FormControl(this.currentProject != null ? this.currentProject.projectRequirements : null)
         }, {updateOn: 'change'});
     }
 
     onSaveProject() {
         this.currentProject = this.projectForm.value;
+        console.log(this.currentProject);
         this.loaderService.show();
         this.setProjectSubscription = this.projectService.addProjectSubject.subscribe(projectOb => {
             this.currentProject = projectOb;
             this.loaderService.hide();
         });
         this.projectService.setProjectData(this.currentProject);
-        console.log(this.currentProject);
     }
 
     onCancel() {
