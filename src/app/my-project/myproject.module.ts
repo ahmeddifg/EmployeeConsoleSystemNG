@@ -11,6 +11,8 @@ import {MyProjectComponent} from './my-project.component';
 import {ProjectFormComponent} from './project-form/project-form.component';
 import {ProjectRequirementsComponent} from './project-requirements/project-requirements.component';
 import {NouisliderModule} from 'ng2-nouislider';
+import { ProjectTeamComponent } from './project-team/project-team.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -22,11 +24,12 @@ import {NouisliderModule} from 'ng2-nouislider';
         MatchHeightModule,
         ReactiveFormsModule,
         NouisliderModule,
-        FormsModule
+        FormsModule,
+        NgSelectModule
     ],
     exports: [],
     declarations: [
-        MyProjectComponent, ProjectFormComponent, ProjectRequirementsComponent
+        MyProjectComponent, ProjectFormComponent, ProjectRequirementsComponent, ProjectTeamComponent
     ],
     providers: [],
 })

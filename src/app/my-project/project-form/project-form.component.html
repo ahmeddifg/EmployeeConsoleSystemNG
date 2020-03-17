@@ -71,6 +71,18 @@
                 </ngb-tab>
                 <ngb-tab [disabled]="currentProject === null">
                     <ng-template ngbTabTitle>
+                        <div (click)="activeTab=4" class="alert"
+                             [ngClass]="{'alert-light': currentProject===null,'alert-primary':(activeTab === 4),'alert-secondary':(activeTab !== 4)}">
+                            Project Team
+                        </div>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+
+                            <app-project-team [currentProject]="currentProject"></app-project-team>
+                     </ng-template>
+                </ngb-tab>
+                <ngb-tab [disabled]="currentProject === null">
+                    <ng-template ngbTabTitle>
                         <div (click)="activeTab=2" class="alert"
                              [ngClass]="{'alert-light': currentProject===null ,'alert-primary':(activeTab === 2),'alert-secondary':(activeTab !== 2)}">
                             Project

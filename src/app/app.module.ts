@@ -26,6 +26,7 @@ import {AuthGuard} from './shared/auth/auth-guard.service';
 import {HttpAuthInterceptor} from './shared/auth/HttpAuthInterceptor';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {ProjectService} from './shared/services/project.service';
+import {ProjectTeamService} from './shared/services/project-team.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true,
@@ -60,7 +61,7 @@ export function createTranslateLoader(http: HttpClient) {
         NgxSpinnerModule
     ],
     providers: [
-        AuthService,
+        AuthService, ProjectTeamService,
         AuthGuard,
         DragulaService, ProjectService,
         {

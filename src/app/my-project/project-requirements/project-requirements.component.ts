@@ -94,7 +94,7 @@ export class ProjectRequirementsComponent implements OnInit, OnDestroy {
 
     onDeleteAction(req: ProjectRequirementModel) {
         swal.fire({
-            title: 'Detele Requirement',
+            title: 'Delete Requirement',
             text: 'Do you want to delete this requirement?',
             type: 'warning',
             confirmButtonText: 'Yes, delete it!',
