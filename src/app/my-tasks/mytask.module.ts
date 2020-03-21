@@ -6,8 +6,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatchHeightModule} from '../shared/directives/match-height.directive';
 
 import {MytaskRoutingModule} from './mytask-routing.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MyTasksComponent} from './my-tasks.component';
+import {NewTaskComponent} from './new-task/new-task.component';
+import {DragulaModule} from 'ng2-dragula';
 
 
 @NgModule({
@@ -17,11 +19,13 @@ import {MyTasksComponent} from './my-tasks.component';
         ChartistModule,
         NgbModule,
         MatchHeightModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        DragulaModule,
+        FormsModule
     ],
     exports: [],
     declarations: [
-       MyTasksComponent
+       MyTasksComponent , NewTaskComponent
     ],
     providers: [],
 })

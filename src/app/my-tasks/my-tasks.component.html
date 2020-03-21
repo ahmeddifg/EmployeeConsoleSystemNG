@@ -1,3 +1,69 @@
-<p>
-  my-tasks works!
-</p>
+<div class="row mt-2">
+    <div class="col-6">
+        <div class="content-header text-left">Task Board</div>
+        <p class="content-sub-header"></p>
+    </div>
+    <div class="col-6 text-right">
+        <button type="button" class="btn btn-raised btn-danger" (click)="addTask()">
+            <i class="fa fa-paper-plane-o d-lg-none d-block"></i>
+            <span class="d-lg-block d-none">Create</span>
+        </button>
+    </div>
+</div>
+<!-- Taskboard Starts -->
+<section id="taskboard">
+    <div class="row">
+        <div class="col-md-3 col-12">
+            <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-list mr-1 float-left"></i>New Tasks</h4>
+            <div class='dragdrop-container' id="New">
+                <div *ngFor='let task of newTasks;  index as i'>
+                    <div class="card">
+                        <div class="card-body pt-3 text-left">
+                            <div class="clearfix text-left">
+                                <h5 class="text-bold-500 primary text-left"
+                                    *ngIf="task.project">{{task.project.projectName}}
+                                </h5>
+                                <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
+                                <div class="actions float-right">
+                                    <i class="ft-gitlab cursor-pointer mr-2 info" (click)="assignTask(content, i);">Assign</i>
+                                    <i class="ft-edit cursor-pointer mr-2 info" (click)="editTask(task);"></i>
+                                    <i class="ft-trash-2 cursor-pointer danger" (click)="deleteTask(task.taskId);"></i>
+                                </div>
+                            </div>
+                            <p>{{task.taskDesc}}</p>
+                        </div>
+                        <div class="card-footer text-left">
+                            <small> Created At <span>{{task.createdDate | date }}</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Select Member to assign this task To: </h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5 *ngIf="selectedTaskIndex  && newTasks[selectedTaskIndex].project"> This task is a part of <span class="italic bold h4">{{newTasks[selectedTaskIndex].project.projectName}}</span> project so selected project member </h5>
+                <label> Select Team Member:</label>
+            </div>
+            <div class="col-sm-6">
+                <select [(ngModel)]="selectedTeamIndex">
+                    <option [value]="null" selected></option>
+                    <option *ngFor="let item of projectTeamAvailable ;  index as i"
+                            [value]="i">{{item.empAccount.userName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a type="button" class="btn btn-warning btn-raised" (click)="d('close') ">Close</a>
+        <a type="button" class="btn btn-raised btn-success" (click)="c('save')">save</a>
+    </div>
+</ng-template>

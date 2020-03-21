@@ -19,7 +19,7 @@ export class MyProjectComponent implements OnInit {
 
     ngOnInit() {
         this.loaderService.show();
-        this.projectSubscription = this.projectService.MyProjectTypeSubject.subscribe(myProjects => {
+        this.projectSubscription = this.projectService.myProjectsSubject.subscribe(myProjects => {
             this.projects = myProjects;
             this.loaderService.hide();
         });

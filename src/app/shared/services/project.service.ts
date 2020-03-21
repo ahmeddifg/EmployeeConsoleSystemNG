@@ -12,7 +12,8 @@ import {ProjectRequirementModel} from '../models/projectRequirement.model';
 })
 export class ProjectService {
     projectTypeSubject: Subject<ProjectTypeModel[]> = new Subject<ProjectTypeModel[]>()
-    MyProjectTypeSubject: Subject<ProjectModel[]> = new Subject<ProjectModel[]>()
+    myProjectsSubject: Subject<ProjectModel[]> = new Subject<ProjectModel[]>()
+    myProjectsAdminSubject: Subject<ProjectModel[]> = new Subject<ProjectModel[]>()
     addProjectSubject: Subject<ProjectModel> = new Subject<ProjectModel>();
     projectRequirementsSubject: Subject<ProjectRequirementModel[]> = new Subject<ProjectRequirementModel[]>();
     projectRequirementSubject: Subject<ProjectRequirementModel> = new Subject<ProjectRequirementModel>();
@@ -22,7 +23,6 @@ export class ProjectService {
     }
 
     loadProjectById(projectId) {
-        console.log(projectId);
         this.http.get<ProjectModel>(activeLink[0] + '/project/auth/' + projectId).subscribe(project => {
             this.addProjectSubject.next(project);
         }, error => {
@@ -34,10 +34,19 @@ export class ProjectService {
 
     loadMyProjects() {
         this.http.get<ProjectModel[]>(activeLink[0] + '/project/auth/all').subscribe(projcets => {
-            this.MyProjectTypeSubject.next(projcets)
+            this.myProjectsSubject.next(projcets)
         }, error => {
             this.toastr.error(error.message);
-            this.MyProjectTypeSubject.next(null);
+            this.myProjectsSubject.next(null);
+        });
+    }
+
+    loadMyProjectsAsAdmin() {
+        this.http.get<ProjectModel[]>(activeLink[0] + '/project/auth/allAdmin').subscribe(projcets => {
+            this.myProjectsAdminSubject.next(projcets)
+        }, error => {
+            this.toastr.error(error.message);
+            this.myProjectsAdminSubject.next(null);
         });
     }
 
