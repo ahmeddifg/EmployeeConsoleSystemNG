@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProjectTeamModel} from '../models/projectTeam.model';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {activeLink} from './backend-link';
 import {Toast, ToastrService} from 'ngx-toastr';
@@ -14,6 +14,10 @@ export class ProjectTeamService {
     projectTeamAvailableSubject = new Subject<UserAccountModel[]>();
     setProjectTeamSubject = new Subject<ProjectTeamModel>();
     deleteProjectTeamSubject = new Subject<ProjectTeamModel>();
+    projectTeamAccountsSubject = new Subject<UserAccountModel[]>();
+
+
+    currentProjectId: number;
 
     constructor(private http: HttpClient, private toast: ToastrService) {
     }
@@ -26,6 +30,18 @@ export class ProjectTeamService {
         }, error => {
             this.toast.error(error.message);
             this.projectTeamSubject.next(null);
+        });
+    }
+
+    loadProjectTeamAccounts() {
+        this.http.get<UserAccountModel[]>(activeLink[0] + '/team/auth/allProjectAccounts/' + this.currentProjectId).subscribe(users => {
+            this.projectTeamAccountsSubject.next(users);
+        });
+    }
+
+    loadAllAccounts() {
+        this.http.get<UserAccountModel[]>(activeLink[0] + '/team/auth/allAccounts').subscribe(users => {
+            this.projectTeamAccountsSubject.next(users);
         });
     }
 

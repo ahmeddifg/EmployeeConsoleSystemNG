@@ -4,19 +4,28 @@
         <p class="content-sub-header"></p>
     </div>
     <div class="col-6 text-right">
-        <button type="button" class="btn btn-raised btn-danger" (click)="addTask()">
-            <i class="fa fa-paper-plane-o d-lg-none d-block"></i>
-            <span class="d-lg-block d-none">Create</span>
+        <button type="button" class="btn btn-raised btn-success" (click)="addTask()">
+            <span class="ft-plus"></span> Create
         </button>
     </div>
 </div>
 <!-- Taskboard Starts -->
 <section id="taskboard">
     <div class="row">
-        <div class="col-md-3 col-12">
-            <h4 class="ml-2 mt-2 text-bold-500 text-left"><i class="ft-list mr-1 float-left"></i>New Tasks</h4>
+        <div class="col-md-3 col-12" *ngIf="newTasks.length>0">
+            <!--    new tasks-->
+            <div class="row justify-content-center" >
+                <div class="col-sm-6">
+                    <h5 (click)="onShowNewTasks()" class="ml-1 text-bold-500 text-left cursor-pointer text-primary" style="margin-bottom: 0;"><span
+                            class="ft-list  float-left"></span>New Tasks</h5>
+                </div>
+                <div class="col-sm-6">
+                    <a class="btn btn-raised btn-primary " style="margin-bottom: 0;" (click)="onShowNewTasks()"> Show All <span
+                            class="badge badge-light">{{newTasks.length}}</span></a>
+                </div>
+            </div>
             <div class='dragdrop-container' id="New">
-                <div *ngFor='let task of newTasks;  index as i'>
+                <div *ngFor='let task of newTasks.slice(0,3);  index as i'>
                     <div class="card">
                         <div class="card-body pt-3 text-left">
                             <div class="clearfix text-left">
@@ -24,10 +33,15 @@
                                     *ngIf="task.project">{{task.project.projectName}}
                                 </h5>
                                 <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
-                                <div class="actions float-right">
-                                    <i class="ft-gitlab cursor-pointer mr-2 info" (click)="assignTask(content, i);">Assign</i>
-                                    <i class="ft-edit cursor-pointer mr-2 info" (click)="editTask(task);"></i>
-                                    <i class="ft-trash-2 cursor-pointer danger" (click)="deleteTask(task.taskId);"></i>
+                                <div class="actions float-right mb-1" style="border-bottom: black solid 1px">
+                                    <i class="ft-gitlab cursor-pointer mr-2 info" placement="top"
+                                       ngbTooltip="Assign this task."
+                                       (click)="assignTask(content, task);">Assign</i>
+                                    <i class="ft-edit cursor-pointer mr-2 info" (click)="editTask(task);"
+                                       placement="top" ngbTooltip="Edit this task."></i>
+                                    <i class="ft-trash-2 cursor-pointer danger" placement="top"
+                                       ngbTooltip="Delete this task."
+                                       (click)="deleteTask(task.taskId);"></i>
                                 </div>
                             </div>
                             <p>{{task.taskDesc}}</p>
@@ -39,7 +53,126 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3 col-12" *ngIf="assignTasks.length>0">
+            <!--    assigned tasks -->
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <h5 (click)="onShowAssignedTasks()" class="ml-1 text-bold-500 text-left cursor-pointer text-primary " style="margin-bottom: 0;"><span
+                            class="ft-list  float-left"></span>Assigned Tasks</h5>
+                </div>
+                <div class="col-sm-6">
+                    <a (click)="onShowAssignedTasks()" class="btn btn-raised btn-primary" style="margin-bottom: 0;"> Show All <span
+                            class="badge badge-light">{{assignTasks.length}}</span></a>
+                </div>
+            </div>
+            <div class='dragdrop-container' id="assigned">
+                <div *ngFor='let task of assignTasks.slice(0,3);  index as i'>
+                    <div class="card">
+                        <div class="card-body pt-3 text-left">
+                            <div class="clearfix text-left">
+                                <h5 class="text-bold-500 primary text-left"
+                                    *ngIf="task.project">{{task.project.projectName}}
+                                </h5>
+                                <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
+                                <div class="actions float-right mb-1" style="border-bottom: black solid 1px">
+                                    <i class=" ft-corner-up-left cursor-pointer mr-2 warning bold "
+                                       (click)="unAssignTask(task);" placement="top" ngbTooltip="Un-Assign this task">Un-Assign</i>
+                                    <i class="ft-edit cursor-pointer mr-2 info" placement="top"
+                                       ngbTooltip="Edit this task" (click)="editTask(task);"></i>
+                                    <i class="ft-trash-2 cursor-pointer danger" placement="top"
+                                       ngbTooltip="Delete this task"
+                                       (click)="deleteTask(task.taskId);"></i>
+                                </div>
+                            </div>
+                            <p>{{task.taskDesc}}</p>
+                        </div>
+                        <div class="card-footer text-left">
+                            <p class="noPaddingDown"><small> Assigned To,
+                                <span>{{task.assignedTo?.userName  }}</span></small></p>
+                            <small> Assigned At, <span>{{task.assignedDate | date }}</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12" *ngIf="completedTasks.length>0">
+            <!--    Completed tasks -->
+            <div class="row justify-content-center">
+                <div class="col-sm-6" style="padding-right: 0">
+
+                    <h5 class="ml-1 text-bold-500 text-left text-primary cursor-pointer " style="margin-bottom: 0;"
+                        (click)="onShowCompletedTasks()"><span
+                            class="ft-list float-left"></span>Completed Tasks</h5>
+
+                </div>
+                <div class="col-sm-6">
+                    <a class="btn btn-raised btn-primary" style="margin-bottom: 0;" (click)="onShowCompletedTasks()">
+                        Show All <span
+                            class="badge badge-light">{{completedTasks.length}}</span></a>
+                </div>
+            </div>
+            <div class='dragdrop-container' id="completed">
+                <div *ngFor='let task of completedTasks.slice(0,3);  index as i'>
+                    <div class="card">
+                        <div class="card-body pt-3 text-left">
+                            <div class="clearfix text-left">
+                                <h5 class="text-bold-500 primary text-left"
+                                    *ngIf="task.project">{{task.project.projectName}}
+                                </h5>
+                                <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
+                                <div class="actions float-right">
+                                </div>
+                            </div>
+                            <p>{{task.taskDesc}}</p>
+                        </div>
+                        <div class="card-footer text-left">
+                            <small> Completed At <span>{{task.assignedDate | date }}</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12" *ngIf="assignToMeTask.length>0">
+            <!--    my assigned to me tasks -->
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <h5 (click)="onShowMyTasks()" class="ml-1 text-bold-500 text-left text-primary cursor-pointer " style="margin-bottom: 0;"><span
+                            class="ft-list float-left"></span>My Tasks</h5>
+                </div>
+                <div class="col-sm-6">
+                    <a (click)="onShowMyTasks()" class="btn btn-raised btn-primary" style="margin-bottom: 0;"> Show All <span
+                            class="badge badge-light">{{assignToMeTask.length}}</span></a>
+                </div>
+            </div>
+            <div class='dragdrop-container' id="assignToMe">
+                <div *ngFor='let task of assignToMeTask.slice(0,3);  index as i'>
+                    <div class="card">
+                        <div class="card-body pt-3 text-left">
+                            <div class="clearfix text-left">
+                                <h5 class="text-bold-500 primary text-left"
+                                    *ngIf="task.project">{{task.project.projectName}}
+                                </h5>
+                                <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
+                                <div class="actions float-right mb-1" style="border-bottom: black solid 1px">
+                                    <span class="fa fa-check-circle"></span> <i class="cursor-pointer mr-2 info"
+                                                                                placement="top"
+                                                                                ngbTooltip="Process this task."
+                                                                                (click)="processThisTask(task);">
+                                    Process </i>
+                                </div>
+                            </div>
+                            <p>{{task.taskDesc}}</p>
+                        </div>
+                        <div class="card-footer text-left">
+                            <small> Assigned At <span>{{task.assignedDate | date }}</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </section>
 
 
@@ -49,16 +182,44 @@
     </div>
     <div class="modal-body">
         <div class="row">
-            <div class="col-sm-6">
-                <h5 *ngIf="selectedTaskIndex  && newTasks[selectedTaskIndex].project"> This task is a part of <span class="italic bold h4">{{newTasks[selectedTaskIndex].project.projectName}}</span> project so selected project member </h5>
+            <div class="col-sm-12">
+                <ul *ngIf="selectedTask  && selectedTask.project">
+                    <p> This task is a part of
+                        <span class="italic bold h4">{{selectedTask.project.projectName}}</span> project
+                        so selected project member </p>
+                </ul>
                 <label> Select Team Member:</label>
             </div>
-            <div class="col-sm-6">
-                <select [(ngModel)]="selectedTeamIndex">
-                    <option [value]="null" selected></option>
-                    <option *ngFor="let item of projectTeamAvailable ;  index as i"
-                            [value]="i">{{item.empAccount.userName}}</option>
-                </select>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Select</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let member of userAccountsData ;  index as i ">
+                        <td>
+                            <ngb-highlight [result]="(i+1) | number"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="member.userName"></ngb-highlight>
+                        </td>
+                        <td>
+                            <a class="btn btn-raised btn-primary" *ngIf="i != memberSelectedIndex "
+                               (click)="memberSelectedIndex = i">Select</a>
+                            <a class="badge badge-warning" *ngIf="i == memberSelectedIndex"> Selected </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="userAccounts.length" [(page)]="currentPage" [pageSize]="pageSize">
+                    </ngb-pagination>
+                </div>
             </div>
         </div>
     </div>

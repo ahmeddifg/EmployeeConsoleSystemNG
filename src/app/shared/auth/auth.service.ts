@@ -23,10 +23,10 @@ export class AuthService {
         this.http.post<UserAccountModel>(activeLink[0] + '/user/register', userAccountModel).subscribe(data => {
             this.userAccount = data;
             this.toastr.success('Register successfully.');
-            this.loginSubjcet.next(this.userAccount);
+            this.signupSubjcet.next(data);
         }, error => {
             this.signupSubjcet.next(null);
-            this.toastr.error(error.message);
+            this.toastr.error(error.error.message);
         });
     }
 

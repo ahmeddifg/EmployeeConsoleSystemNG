@@ -46,8 +46,9 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 
 
     onSubmit() {
-        this.subscription = this.authSerice.signupSubjcet.subscribe(data => {
-            if (data) {
+        this.subscription = this.authSerice.signupSubjcet.subscribe(user => {
+            console.log(user);
+            if (user !== null) {
                 this.router.navigateByUrl('pages/login', {relativeTo: null});
             }
         });

@@ -93,11 +93,11 @@
 
                         <div class="form-actions">
                             <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
-                                <i class="ft-x"></i> Cancel
+                                <span class="ft-x"></span> Cancel
                             </button>
                             <button type="button" class="btn btn-raised " [disabled]="!profileForm.valid" (click)="onSaveProfile()"
                                     [ngClass]="{'btn-success':profileForm.valid, 'btn-secondary':!profileForm.valid}"  >
-                                <i class="fa fa-check-square-o"></i> Save
+                                <span class="fa fa-check-square-o"></span> Save
                             </button>
                         </div>
                     </form>

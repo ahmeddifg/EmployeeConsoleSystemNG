@@ -18,4 +18,8 @@ export const Full_ROUTES: Routes = [
         path: 'tasks',
         loadChildren: () => import('../../my-tasks/mytask.module').then(m => m.MyTaskModule)
     },
+    {
+        path: 'files',
+        loadChildren: () => import('../../myfiles-page/myfiles.module').then(m => m.MyFilesModule)
+    },
 ];

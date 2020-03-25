@@ -39,6 +39,16 @@ export const ROUTES: RouteInfo[] = [
         isExternalLink: false,
         submenu: []
     },
+    {
+        path: '/files/view',
+        title: 'My Files',
+        icon: 'ft-file-text',
+        class: '',
+        badge: '',
+        badgeClass: '',
+        isExternalLink: false,
+        submenu: []
+    },
 
 
 ];
