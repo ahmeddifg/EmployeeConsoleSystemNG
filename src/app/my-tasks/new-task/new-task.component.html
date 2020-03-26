@@ -1,0 +1,68 @@
+<div class="row text-left">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-content">
+                <div class="px-3">
+                    <form class="form" [formGroup]="taskForm" (ngSubmit)="onSaveTask()">
+                        <div class="form-body">
+                            <h4 class="form-section"><i class="ft-user"></i>Task Details</h4>
+                            <div class="form-group">
+                                <label for="taskDesc">Task Description</label>
+                                <textarea id="taskDesc" rows="5" class="form-control" name="taskDesc"
+                                          formControlName="taskDesc"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="taskType">Task Type</label>
+                                        <select id="taskType" name="taskType" class="form-control"
+                                                formControlName="taskType">
+                                            <option value="Client Request">User request</option>
+                                            <option value="Report">Report</option>
+                                            <option value="Fix a Bug">Fix Bug</option>
+                                            <option value="Project Requirement">Project Requirement</option>
+                                            <option value="Design">Design</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                               id="defaultCheck1" (click)="onselectProjectCheck()">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Is this task related to Project?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="isTaskProject === true">
+                                <div class="col-sm-6">
+                                    <label for="projectId">Please select the project:</label>
+                                    <select id="projectId" name="projectId" class="form-control"
+                                            formControlName="projectId">
+                                        <option *ngFor="let project of myAdminProjects"
+                                                [value]="project.projectId">{{project.projectName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" (click)="onCancel()">
+                                <i class="ft-x"></i> Cancel
+                            </button>
+                            <button type="button" class="btn btn-raised " [disabled]="!taskForm.valid"
+                                    (click)="onSaveTask()"
+                                    [ngClass]="{'btn-success':taskForm.valid, 'btn-secondary':!taskForm.valid}">
+                                <i class="fa fa-check-square-o"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

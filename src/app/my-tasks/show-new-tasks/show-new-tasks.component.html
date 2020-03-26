@@ -1,0 +1,98 @@
+<hr/>
+<div class="row text-left">
+  <div class="col-sm-6">
+    <span class="ft-list float-left"></span> <h5 class="text-bold-500 text-primary">New Tasks</h5>
+  </div>
+  <div class="col-sm-6 text-right">
+    <a class="btn btn-raised btn-warning" (click)="onBack()">Back</a>
+  </div>
+</div>
+<div class="row">
+  <div *ngFor='let task of newTasks;  index as i' class="col-sm-4 pull-left">
+    <!--    Completed tasks -->
+    <div class="card">
+      <div class="card-body pt-3 text-left">
+        <div class="clearfix text-left">
+          <h5 class="text-bold-500 primary text-left"
+              *ngIf="task.project">{{task.project.projectName}}
+          </h5>
+          <h6 class="text-bold-500 primary text-left italic">{{task.taskType}}</h6>
+          <div class="actions float-right" style="border-bottom: black solid 1px">
+            <i class=" ft-gitlab cursor-pointer mr-2 info bold "
+               (click)="assignTask(content,task);" placement="top" ngbTooltip="Assign this task">Assign</i>
+            <i class="ft-edit cursor-pointer mr-2 info" placement="top"
+               ngbTooltip="Edit this task" (click)="editTask(task);"></i>
+            <i class="ft-trash-2 cursor-pointer danger" placement="top"
+               ngbTooltip="Delete this task"
+               (click)="deleteTask(task.taskId);"></i>
+          </div>
+        </div>
+        <p>{{task.taskDesc}}</p>
+      </div>
+      <div class="card-footer text-left">
+        <small> Created At, <span>{{task.createdDate | date }}</span></small>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf=" pageCount >0 && pageCount  !== currentPage">
+  <div class="col-6 offset-3">
+    <button type="button" class="btn btn-raised btn-primary btn-lg btn-block" (click)="onLoadMore()">Load more
+    </button>
+  </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Select Member to assign this task To: </h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul *ngIf="selectedTask  && selectedTask.project">
+          <p> This task is a part of
+            <span class="italic bold h4">{{selectedTask.project.projectName}}</span> project
+            so selected project member </p>
+        </ul>
+        <label> Select Team Member:</label>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Select</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let member of userAccountsData ;  index as i ">
+            <td>
+              <ngb-highlight [result]="(i+1) | number"></ngb-highlight>
+            </td>
+            <td>
+              <ngb-highlight [result]="member.userName"></ngb-highlight>
+            </td>
+            <td>
+              <a class="btn btn-raised btn-primary" *ngIf="i != memberSelectedIndex "
+                 (click)="memberSelectedIndex = i">Select</a>
+              <a class="badge badge-warning" *ngIf="i == memberSelectedIndex"> Selected </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [collectionSize]="userAccounts.length" [(page)]="currentPagePopup" [pageSize]="pageSize">
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a type="button" class="btn btn-warning btn-raised" (click)="d('close') ">Close</a>
+    <a type="button" class="btn btn-raised btn-success" (click)="c('save')">save</a>
+  </div>
+</ng-template>
