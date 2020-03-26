@@ -11,6 +11,7 @@ export interface TaskModel {
     taskOwnerId: number;
     projectId: number;
     status: number;
+    completedDate: string;
     assignedTo?: UserAccountModel;
     taskOwner?: UserAccountModel;
     project?: ProjectModel;

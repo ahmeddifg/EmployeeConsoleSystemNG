@@ -7,8 +7,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import swal from 'sweetalert2';
 import {ProjectTeamService} from '../shared/services/project-team.service';
 import {UserAccountModel} from '../shared/models/userAccount.model';
-import * as _ from 'lodash';
-import {ProjectTeamModel} from '../shared/models/projectTeam.model';
 import {ToastrService} from 'ngx-toastr';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -34,7 +32,7 @@ export class MyTasksComponent implements OnInit {
     doneTaskSubscription: Subscription;
     memberSelectedIndex;
     currentPage = 1;
-    pageSize = 5
+    pageSize = 5;
 
     constructor(private taskService: TaskService, private router: Router,
                 private loaderService: NgxSpinnerService, private projectTeamService: ProjectTeamService,
