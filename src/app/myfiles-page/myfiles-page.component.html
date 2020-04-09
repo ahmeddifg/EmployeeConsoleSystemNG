@@ -1,3 +1,56 @@
-<p>
-  myfiles-page works!
-</p>
+<!--User's uploaded photos section starts-->
+<section id="files">
+  <div class="row">
+    <div class="col-12">
+      <div class="content-header">Files</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <a  class="btn btn-raised btn-success" (click)="openUploadFile(content)"> Upload File </a>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div *ngFor="let file of myFiles"  class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="card-img">
+                      <img class="card-img-top img-fluid" src="assets/img/photos/14.jpg" alt="Card image cap">
+                      <h4 class="card-title">{{file.fileName}}</h4>
+                      <a class="btn btn-floating halfway-fab bg-danger" (click)="onDeleteFile(file._Id)" ><i class="ft-trash"></i></a>
+                    </div>
+                    <div class="card-body">
+                      <a class="btn btn-raised btn-warning" href="http://localhost:8882/getFile/{{file._Id}}" >Download</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--let-c="close" let-d="dismiss"-->
+<ng-template #content id="content" >
+  <div class="modal-header">
+    <h4 class="modal-title">Upload file </h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="file" name="photo" ng2FileSelect [uploader]="uploader"/>
+      <button type="button" class="btn btn-raised"
+              (click)="uploader.uploadAll()" [disabled]="uploader.isUploading"
+              [ngClass]="{'btn-success':!uploader.isUploading, 'btn-secondary':uploader.isUploading}">
+        <span class="glyphicon glyphicon-upload"></span> Upload file
+      </button>
+    </div></div>
+<!--  <div class="modal-footer">-->
+<!--    <a type="button" class="btn btn-raised btn-success" (click)="c('save')">Done</a>-->
+<!--  </div>-->
+</ng-template>

@@ -9,6 +9,8 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {MyprofileRoutingModule} from './myprofile-routing.module';
 import {MyProfileComponent} from './my-profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FileSelectDirective, FileUploadModule} from 'ng2-file-upload';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,13 +20,14 @@ import {ReactiveFormsModule} from '@angular/forms';
         ChartistModule,
         NgbModule,
         MatchHeightModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FileUploadModule,
+        SharedModule
     ],
     exports: [],
     declarations: [
         MyProfileComponent ,
-        EditProfileComponent
-    ],
+        EditProfileComponent],
     providers: [],
 })
 export class MyProfileModule {

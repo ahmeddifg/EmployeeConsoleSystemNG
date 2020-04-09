@@ -99,6 +99,7 @@ export class ProjectRequirementsComponent implements OnInit, OnDestroy {
             type: 'warning',
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'Cancel',
+            showCancelButton: true,
             preConfirm: () => {
                 this.projectService.deleteRequirement(req);
             }

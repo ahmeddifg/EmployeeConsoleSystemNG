@@ -53,8 +53,7 @@ import {TooltipModule} from '@swimlane/ngx-charts';
         SidebarLinkDirective,
         SidebarListDirective,
         SidebarAnchorToggleDirective,
-        SidebarToggleDirective
-    ]
+        SidebarToggleDirective]
 })
 export class SharedModule {
 }

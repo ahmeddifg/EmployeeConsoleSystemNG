@@ -28,10 +28,9 @@
                                     class="fa fa-address-card"></i>
                                 About me
                             </button>
-                            <button type="button" (click)="showPage('Photos')" class="btn btn-success btn-raised mr-2">
-                                <i
-                                        class="fa fa-camera-retro"></i>
-                                ` Photos
+                            <button type="button" (click)="showPage('Files')" class="btn btn-success btn-raised mr-2">
+                                <i class="fa fa-camera-retro"></i>
+                                Files
                             </button>
                             <button type="button" (click)="showPage('Messages')"
                                     class="btn btn-success btn-raised mr-2">
@@ -64,7 +63,7 @@
         <div class="col-sm-12">
             <div class="card">
             </div>
-            <div class="card-content" >
+            <div class="card-content">
                 <div class="card-body">
                     <div class="mb-3">
                         <div class="row">
@@ -91,7 +90,7 @@
                                 </li>
                                 <li class="mb-2">
                                     <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> Years of experience:</a></span>
-                                    <span class="d-block overflow-hidden">{{userProfile.yearsEx +' years'}}</span>
+                                    <span class="d-block overflow-hidden">{{userProfile.yearsEx + ' years'}}</span>
                                 </li>
                                 <li class="mb-2">
                                     <span class="text-bold-500 primary"><a><i class="ft-user font-small-3"></i> Gender:</a></span>
@@ -317,96 +316,4 @@
 </section>
 <!--User's friend section starts-->
 
-<!--User's uploaded photos section starts-->
-<section id="photos" *ngIf="currentPage === 'Photos'">
-    <div class="row">
-        <div class="col-12">
-            <div class="content-header">Photos</div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Photos Uploaded</h5>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <div class="row">
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/1.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/2.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/3.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/4.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                        </div>
-                        <div class="row">
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/5.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/6.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/7.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/8.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                        </div>
-                        <div class="row">
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/9.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/10.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/11.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/12.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                        </div>
-                        <div class="row">
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/13.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/14.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/15.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                            <figure class="col-lg-3 col-md-6 col-12">
-                                <img class="img-thumbnail img-fluid" src="./assets/img/gallery/16.jpg"
-                                     itemprop="thumbnail" alt="Image description"/>
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+

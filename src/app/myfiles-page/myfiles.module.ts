@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NouisliderModule} from 'ng2-nouislider';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {MyfilesPageComponent} from './myfiles-page.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {MyfilesPageComponent} from './myfiles-page.component';
         ReactiveFormsModule,
         NouisliderModule,
         FormsModule,
-        NgSelectModule
+        NgSelectModule,
+        FileUploadModule
     ],
     exports: [],
     declarations: [
